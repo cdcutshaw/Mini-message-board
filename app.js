@@ -17,6 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 // Use the routes
 app.use('/', appRoutes);
 
+//Middleware for serving static assets from public directory
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+
 // Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
