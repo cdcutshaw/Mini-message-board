@@ -6,7 +6,16 @@
   <title><%= title %></title>
 </head>
 <body>
-  <h1>Welcome to the Mini Message Board!</h1>
-  <p>This is a basic Express app using EJS.</p>
+    <h1><%= title %></h1>
+    <ul>
+      <% messages.forEach((message) => { %>
+        <li>
+          <strong><%= message.user %></strong>: <%= message.text %>
+          <br>
+          <small>Added on <%= message.added.toLocaleString() %></small>
+        </li>
+      <% }); %>
+    </ul>
+    <a href="/new">Add a New Message</a>
 </body>
 </html>

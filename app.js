@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const appRoutes = require('./routes/router');
 
 const app = express();
 
@@ -10,10 +11,11 @@ app.set('views', path.join(__dirname, 'views'));
 // Middleware for serving static files (optional, for CSS, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Define a basic index route
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Mini Message Board' });
-});
+// Middleware for parsing form data
+app.use(express.urlencoded({ extended: true }));
+
+// Use the routes
+app.use('/', appRoutes);
 
 // Start the server
 const PORT = 3000;
